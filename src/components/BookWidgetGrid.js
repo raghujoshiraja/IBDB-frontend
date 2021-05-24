@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { GlobalState } from "../GlobalState";
-import Ripple from '@bit/joshk.react-spinners-css.ripple';
+import '../utils/spinner/spinner.css'
 
 function BookWidgetGrid() {
   const state = useContext(GlobalState);
   const { books } = state.BookAPI;
   const setCurrentBook = state.BookAPI.currentBook.slice(-1)[0];
 
-  if (books.length === 0) return <Ripple color="#be97e8" />
+  if (books.length === 0) return <div className="spinner"></div>
   return (
     <div className="mt-4">
       {books.map((book) => {
