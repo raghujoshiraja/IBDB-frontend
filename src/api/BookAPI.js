@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
-import _ from "lodash";
+import axios from "../axios";
+import { toast } from "react-toast";
 
 const books = [
   {
@@ -102,41 +103,18 @@ const books = [
 ];
 
 const BookAPI = () => {
-  const [currentBook, setCurrentBook] = useState(false);
-  const [currentBookInfo, setCurrentBookInfo] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
   const [sourceBooks, setSourceBooks] = useState([]);
 
   useEffect(() => {
-    setSourceBooks(books);
+    axios
+      .get("/books")
+      .then((res) => setSourceBooks(res.data))
+      .catch((err) => toast.error(`Unable to fetch books. ${err}`));
   }, []);
-
-  useEffect(() => {
-    // Search function
-    if (!searchTerm) return setSourceBooks(books);
-    console.log("Searched", searchTerm);
-    setSourceBooks(
-      _.filter(books, ({ name }) => {
-        // Advanced Search (checks if serach term and match have all characters in common)
-        return [...searchTerm.toLowerCase()].every((char) => {
-          return [...name.toLowerCase()].includes(char);
-        });
-      })
-    );
-  }, [searchTerm]);
-
-  useEffect(() => {
-    if (!currentBook) return;
-
-    // Using lodash here bcoz Javascript is broken and its errors are stupid
-    setCurrentBookInfo(_.find(books, { id: currentBook }));
-  }, [currentBook, currentBookInfo]);
 
   return {
     books: sourceBooks,
-    currentBook: [currentBook, setCurrentBook],
-    currentBookInfo: [currentBookInfo, setCurrentBookInfo],
-    search: [searchTerm, setSearchTerm],
+    sourceBooks: [sourceBooks, setSourceBooks],
   };
 };
 

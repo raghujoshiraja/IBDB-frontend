@@ -1,20 +1,14 @@
-import React, { createContext } from 'react'
-import BookAPI from './api/BookAPI'
+import React, { createContext } from "react";
+import booksAPI from "./api/BookAPI";
 
-export const GlobalState = createContext()
+export const GlobalState = createContext();
 
 const DataProvider = ({ children }) => {
-  
   const state = {
-    BookAPI: BookAPI()
-  }
+    booksAPI: booksAPI(),
+  };
 
-  return (
-    <GlobalState.Provider value={state}>
-      {children}
-    </GlobalState.Provider>
-  )
-}
+  return <GlobalState.Provider value={state}>{children}</GlobalState.Provider>;
+};
 
-
-export default DataProvider
+export default DataProvider;

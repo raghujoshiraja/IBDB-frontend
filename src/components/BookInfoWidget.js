@@ -12,15 +12,15 @@ import { Link } from "react-router-dom";
 
 function BookInfoWidget() {
   const state = useContext(GlobalState);
-  const [currentBookInfo] = state.BookAPI.currentBookInfo;
+  // const [currentBookInfo] = state.booksAPI.currentBookInfo;
 
   return (
     <div className="border-pink-500 border-4 p-8 rounded-3xl shadow-xl w-full">
-      <h1 className="h1 max-w-xl">{currentBookInfo.name || "Click book"}</h1>
+      {/* <h1 className="h1 max-w-xl">{currentBookInfo.name || "Click book"}</h1>
       <h2 className="h2">Author</h2>
       <Link to={{ query: { author: currentBookInfo.author } }}>
         More Books by the author
-      </Link>
+      </Link> */}
     </div>
   );
 }

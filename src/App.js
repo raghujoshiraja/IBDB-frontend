@@ -5,6 +5,7 @@ import Books from "./pages/Books";
 import Authors from "./pages/Authors";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { ToastContainer } from "react-toast";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         </Switch>
       </main>
       <Footer />
+      <ToastContainer />
     </>
   );
 }

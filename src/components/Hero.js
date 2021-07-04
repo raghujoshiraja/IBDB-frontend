@@ -1,8 +1,10 @@
 import React from 'react'
-import BookWidgetGrid from '../components/BookWidgetGrid'
+import BookWidgetGrid from './ItemGrid'
 import BookInfoWidget from '../components/BookInfoWidget'
 
 function Hero() {
+  const []
+
   return (
     <div>
       <h1 className="mt-6 text-3xl">Explore Books</h1>
