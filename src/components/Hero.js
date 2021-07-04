@@ -6,7 +6,7 @@ function Hero() {
   return (
     <div>
       <h1 className="mt-6 text-3xl">Explore Books</h1>
-      <div className="flex">
+      <div className="grid grid-cols-4">
         <BookWidgetGrid />
         <BookInfoWidget />
       </div>

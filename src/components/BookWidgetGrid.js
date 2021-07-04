@@ -9,7 +9,7 @@ function BookWidgetGrid() {
 
   if (books.length === 0) return <div className="spinner"></div>
   return (
-    <div className="mt-4">
+    <div className="mt-4 col-span-3">
       {books.map((book) => {
         return (
           <div
