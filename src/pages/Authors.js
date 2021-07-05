@@ -17,7 +17,6 @@ const Authors = () => {
   useEffect(() => {
     // Search function
     if (!searchTerm) return setAuthors(sourceAuthors);
-    console.log("Searched", searchTerm);
     setCurrentAuthorInfo(
       _.filter(sourceAuthors, ({ title }) => {
         // Advanced Search (checks if serach term and match have all characters in common)
@@ -29,16 +28,10 @@ const Authors = () => {
   }, [searchTerm, Authors, sourceAuthors]);
 
   useEffect(() => {
-    console.log(
-      "Selected Authors",
-      sourceAuthors.filter((Author) => Author._id === currentAuthorId)[0]
-    );
     setCurrentAuthorInfo(
       sourceAuthors.filter((Author) => Author._id === currentAuthorId)[0]
     );
   }, [currentAuthorId, sourceAuthors]);
-
-  console.log("\n\n!!! Authors !!!", Authors);
 
   return (
     <>

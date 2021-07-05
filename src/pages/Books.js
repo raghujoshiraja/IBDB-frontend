@@ -29,7 +29,6 @@ const Books = () => {
   useEffect(() => {
     // Search function
     if (!searchTerm) return setBooks(sourceBooks);
-    console.log("Searched", searchTerm);
     setCurrentBookInfo(
       _.filter(sourceBooks, ({ title }) => {
         // Advanced Search (checks if serach term and match have all characters in common)
@@ -41,72 +40,10 @@ const Books = () => {
   }, [searchTerm, books, sourceBooks]);
 
   useEffect(() => {
-    console.log(
-      "Selected Books",
-      sourceBooks.filter((book) => book._id === currentBookId)[0]
-    );
     setCurrentBookInfo(
       sourceBooks.filter((book) => book._id === currentBookId)[0]
     );
   }, [currentBookId, sourceBooks]);
-
-  console.log("\n\n!!! Books !!!", books);
-
-  const AddNewBook = () => (
-    <form className="form">
-      <button
-        className="absolute top-5 right-5"
-        onClick={(e) => {
-          e.preventDefault();
-          setIsAddingBook(false);
-        }}
-      >
-        <FiX className="text-lg" />
-      </button>
-      <h1 className="h1">Add Book</h1>
-      <input
-        value={newBook.title}
-        onChange={(e) => setNewBook({ ...newBook, title: e.target.value })}
-        type="text"
-        className="inp"
-        placeholder="Title"
-      />
-      <input
-        value={newBook.pageCount}
-        onChange={(e) => setNewBook({ ...newBook, pageCount: e.target.value })}
-        type="text"
-        className="inp"
-        placeholder="Page Count"
-      />
-      <select
-        type="text"
-        name="city"
-        list="cityname"
-        className="inp"
-        value={newBook.authorId}
-        onChange={(e) => setNewBook({ ...newBook, authorId: e.target.value })}
-      >
-        <option value="" hidden disabled>
-          Select Author
-        </option>
-        {sourceAuthors.length > 0 &&
-          sourceAuthors.map((author) => (
-            <option key={author._id} value={author._id}>{author.name}</option>
-          ))}
-      </select>
-      <textarea
-        name=""
-        id=""
-        className="inp rounded-3xl"
-        placeholder="Description"
-        value={newBook.description}
-        onChange={(e) =>
-          setNewBook({ ...newBook, description: e.target.value })
-        }
-      ></textarea>
-      <button className="btn">Create</button>
-    </form>
-  );
 
   return (
     <>
@@ -130,7 +67,75 @@ const Books = () => {
             onClickCleanup={() => setIsAddingBook(false)}
           />
           <div className="">
-            {isAddingBook && <AddNewBook />}
+            {isAddingBook && (
+              <form
+                className="form"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  state.booksAPI.createNewBook(newBook);
+                }}
+              >
+                <button
+                  className="absolute top-5 right-5"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsAddingBook(false);
+                  }}
+                >
+                  <FiX className="text-lg" />
+                </button>
+                <h1 className="h1">Add Book</h1>
+                <input
+                  value={newBook.title}
+                  onChange={(e) =>
+                    setNewBook({ ...newBook, title: e.target.value })
+                  }
+                  type="text"
+                  className="inp"
+                  placeholder="Title"
+                />
+                <input
+                  value={newBook.pageCount}
+                  onChange={(e) =>
+                    setNewBook({ ...newBook, pageCount: e.target.value })
+                  }
+                  type="text"
+                  className="inp"
+                  placeholder="Page Count"
+                />
+                <select
+                  type="text"
+                  name="city"
+                  list="cityname"
+                  className="inp"
+                  value={newBook.authorId}
+                  onChange={(e) =>
+                    setNewBook({ ...newBook, authorId: e.target.value })
+                  }
+                >
+                  <option value="" hidden disabled>
+                    Select Author
+                  </option>
+                  {sourceAuthors.length > 0 &&
+                    sourceAuthors.map((author) => (
+                      <option key={author._id} value={author._id}>
+                        {author.name}
+                      </option>
+                    ))}
+                </select>
+                <textarea
+                  name=""
+                  id=""
+                  className="inp rounded-3xl"
+                  placeholder="Description"
+                  value={newBook.description}
+                  onChange={(e) =>
+                    setNewBook({ ...newBook, description: e.target.value })
+                  }
+                ></textarea>
+                <button className="btn">Create</button>
+              </form>
+            )}
             <BookInfoWidget currentData={currentBookInfo} />
           </div>
         </div>
