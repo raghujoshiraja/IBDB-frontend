@@ -10,6 +10,7 @@ import { GlobalState } from "../GlobalState";
 const initialNewBookValues = {
   title: "",
   pageCount: 1,
+  genre: "",
   authorId: "",
   description: "",
 };
@@ -102,6 +103,15 @@ const Books = () => {
                   type="text"
                   className="inp"
                   placeholder="Page Count"
+                />
+                <input
+                  value={newBook.genre}
+                  onChange={(e) =>
+                    setNewBook({ ...newBook, genre: e.target.value })
+                  }
+                  type="text"
+                  className="inp"
+                  placeholder="Genre"
                 />
                 <select
                   type="text"
