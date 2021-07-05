@@ -5,22 +5,22 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 h1 {
   @apply font-semibold text-3xl;
 }
 
-main{
+main {
   min-height: calc(100vh - 240px);
 }
 .inp {
   @apply border-pink-500 border-4 px-6 py-2 rounded-full mt-4 w-full;
 }
-.btn{
+.btn {
   @apply bg-pink-500 text-white px-6 py-2 rounded-full mt-4 transition ease-in-out hover:opacity-90;
 }
-.form{
-  @apply border-pink-500 border-4 p-8 rounded-3xl shadow-xl max-w-md col-start-3 col-span-4 text-center;
+.form {
+  @apply border-pink-500 border-4 p-8 rounded-3xl shadow-xl max-w-md col-start-3 col-span-4 text-center relative;
 }

@@ -1,25 +1,27 @@
-import React, { useContext } from "react";
-import { GlobalState } from "../GlobalState";
-import "../utils/spinner/spinner.css";
+import React from "react";
+import Loading from "../utils/loading/Loading";
 
-const ItemGrid = ({ idVariable, setIdVariable, books }) => {
-  // const state = useContext(GlobalState);
-  // const setCurrentBook = state.booksAPI.currentBook.slice(-1)[0];
-
-  if (books.length === 0) return <div className="spinner"></div>;
+const ItemGrid = ({ setIdVariable, data, onClickCleanup }) => {
   return (
     <div className="mt-4 col-span-3">
-      {/* {books.map((book) => {
-        return (
-          <div
-            className="px-3 py-2 border-pink-500 border-2 inline-block m-2 rounded-xl shadow-md cursor-pointer"
-            key={book.id}
-            onClick={() => setIdVariable(book.id)}
-          >
-            {book.name}
-          </div>
-        );
-      })} */}
+      {data.length === 0 ? (
+        <Loading>We're waiting for books to appear...</Loading>
+      ) : (
+        data.map((item) => {
+          return (
+            <div
+              className="px-3 py-2 border-pink-500 border-2 inline-block m-2 rounded-xl shadow-md cursor-pointer"
+              key={item._id}
+              onClick={() => {
+                setIdVariable(item._id);
+                onClickCleanup();
+              }}
+            >
+              {item.title}
+            </div>
+          );
+        })
+      )}
     </div>
   );
 };
