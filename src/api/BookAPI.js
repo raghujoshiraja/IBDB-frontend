@@ -4,6 +4,7 @@ import { toast } from "react-toast";
 
 const BookAPI = () => {
   const [sourceBooks, setSourceBooks] = useState([]);
+  const [refreshVar, setRefreshVar] = useState(false);
 
   useEffect(() => {
     axios
@@ -24,8 +25,11 @@ const BookAPI = () => {
 
   const editBook = ({ id, data }) => {
     axios
-      .patch(`/books/single${id}`, data)
-      .then(() => toast.success("Edited the book successfully!"))
+      .patch(`/books/single/${id}`, data)
+      .then(() => {
+        toast.success("Edited the book successfully!");
+        refreshBooks();
+      })
       .catch((err) => {
         console.error(err);
         toast.error(`Errored Out: ${err}`);
@@ -34,19 +38,25 @@ const BookAPI = () => {
 
   const deleteBook = (id) => {
     axios
-      .delete(`/books/single${id}`)
-      .then(() => toast.success("Deleted the book successfully!"))
+      .delete(`/books/single/${id}`)
+      .then(() => {
+        toast.success("Deleted the book successfully!");
+        refreshBooks();
+      })
       .catch((err) => {
         console.error(err);
         toast.error(`Errored Out: ${err}`);
       });
   };
 
+  const refreshBooks = () => setRefreshVar(!refreshBooks);
+
   return {
     sourceBooks: [sourceBooks, setSourceBooks],
     createNewBook,
     deleteBook,
     editBook,
+    refreshBooks,
   };
 };
 
