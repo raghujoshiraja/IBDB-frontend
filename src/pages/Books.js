@@ -73,6 +73,7 @@ const Books = () => {
                 className="form"
                 onSubmit={(e) => {
                   e.preventDefault();
+                  setIsAddingBook(false);
                   state.booksAPI.createNewBook(newBook);
                 }}
               >

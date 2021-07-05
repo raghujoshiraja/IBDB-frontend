@@ -11,12 +11,15 @@ const BookAPI = () => {
       .get("/books")
       .then((res) => setSourceBooks(res.data))
       .catch((err) => toast.error(`Unable to fetch books. ${err}`));
-  }, []);
+  }, [refreshVar]);
 
   const createNewBook = (data) => {
     axios
       .post("/books", data)
-      .then(() => toast.success("Added the book successfully!"))
+      .then(() => {
+        toast.success("Added the book successfully!");
+        refreshBooks();
+      })
       .catch((err) => {
         console.error(err);
         toast.error(`Errored Out: ${err}`);
@@ -49,7 +52,7 @@ const BookAPI = () => {
       });
   };
 
-  const refreshBooks = () => setRefreshVar(!refreshBooks);
+  const refreshBooks = () => setRefreshVar(!refreshVar);
 
   return {
     sourceBooks: [sourceBooks, setSourceBooks],

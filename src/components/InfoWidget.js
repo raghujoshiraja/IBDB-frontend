@@ -43,8 +43,14 @@ function InfoWidget({ currentData }) {
           </div>
         )}
       </div>
+      <hr className="my-3" />
+      <h4 className="h4 font-bold">Description</h4>
       <p>{currentData?.description}</p>
-      <Link to={{ query: { author: currentAuthor?.name } }}>
+      <hr className="my-3" />
+      <Link
+        to={{ query: { author: currentAuthor?.name } }}
+        className="font-bold"
+      >
         More Books by the author:
       </Link>
     </div>
