@@ -14,10 +14,9 @@ const ItemGrid = ({ setIdVariable, data, onClickCleanup }) => {
               key={item._id}
               onClick={() => {
                 setIdVariable(item._id);
-                onClickCleanup();
               }}
             >
-              {item.title}
+              {item.title || item.name}
             </div>
           );
         })

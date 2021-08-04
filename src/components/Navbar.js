@@ -11,13 +11,6 @@ function Navbar() {
       <nav className="flex flex-row gap-6">
         <NavLink
           activeClassName="bg-pink-500"
-          to="/"
-          className="py-1 md:py-1.5 md:px-4 xl:py-2 xl:px-6 hover:bg-opacity-50 transition ease-in-out cursor-pointer rounded-md"
-        >
-          Explore
-        </NavLink>
-        <NavLink
-          activeClassName="bg-pink-500"
           to="/books"
           className="py-1 md:py-1.5 md:px-4 xl:py-2 xl:px-6 hover:bg-opacity-50 transition ease-in-out cursor-pointer rounded-md"
         >

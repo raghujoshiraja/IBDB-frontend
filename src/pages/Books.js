@@ -19,7 +19,7 @@ const Books = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const state = useContext(GlobalState);
   const [sourceBooks] = state.booksAPI.sourceBooks; // Untouched raw books from source
-  const [sourceAuthors] = state.authorAPI.sourceAuthors; // Untouched raw books from source
+  const [sourceAuthors] = state.authorsAPI.sourceAuthors; // Untouched raw books from source
   const [books, setBooks] = useState([]); // Books after operations (like filters and search)
   const [currentBookId, setCurrentBookId] = useState("");
   const [isAddingBook, setIsAddingBook] = useState(false);
@@ -30,15 +30,13 @@ const Books = () => {
   useEffect(() => {
     // Search function
     if (!searchTerm) return setBooks(sourceBooks);
-    setCurrentBookInfo(
+    setBooks(
       _.filter(sourceBooks, ({ title }) => {
         // Advanced Search (checks if serach term and match have all characters in common)
-        return [...searchTerm.toLowerCase()].every((char) =>
-          title.match(/{sear}/i)
-        );
+        return title.toLowerCase().includes(searchTerm.toLowerCase());
       })
     );
-  }, [searchTerm, books, sourceBooks]);
+  }, [searchTerm, sourceBooks]);
 
   useEffect(() => {
     setCurrentBookInfo(
@@ -70,7 +68,7 @@ const Books = () => {
           <div className="">
             {isAddingBook && (
               <form
-                className="form"
+                className="form my-4"
                 onSubmit={(e) => {
                   e.preventDefault();
                   setIsAddingBook(false);
@@ -147,7 +145,7 @@ const Books = () => {
                 <button className="btn">Create</button>
               </form>
             )}
-            <BookInfoWidget currentData={currentBookInfo} />
+            <BookInfoWidget mode="book" currentData={currentBookInfo} />
           </div>
         </div>
       </div>

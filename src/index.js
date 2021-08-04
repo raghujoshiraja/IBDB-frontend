@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
   <DataProvider>
-    <Router>
+    <Router basename="/~2021141/ibdb">
       <App />
     </Router>
   </DataProvider>,
