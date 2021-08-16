@@ -4,6 +4,7 @@ import _ from "lodash";
 import { FiX } from "react-icons/fi";
 import Search from "../components/Search";
 import InfoWidget from "../components/AuthorInfoWidget";
+import { useParams } from "react-router";
 import ItemGrid from "../components/ItemGrid";
 
 const initialNewAuthorValues = {
@@ -22,7 +23,7 @@ const Authors = () => {
   const [currentAuthorId, setCurrentAuthorId] = useState("");
   const [currentAuthorInfo, setCurrentAuthorInfo] = useState({});
   const [isAddingAuthor, setIsAddingAuthor] = useState(false);
-
+  const { id: urlId } = useParams();
   const [newAuthor, setNewAuthor] = useState(initialNewAuthorValues);
 
   useEffect(() => {
@@ -35,6 +36,12 @@ const Authors = () => {
       })
     );
   }, [searchTerm, sourceAuthors]);
+
+  useEffect(() => {
+    if (urlId) {
+      setCurrentAuthorId(urlId);
+    }
+  }, [urlId]);
 
   useEffect(() => {
     const filteredValue = {
@@ -78,6 +85,7 @@ const Authors = () => {
                   e.preventDefault();
                   setIsAddingAuthor(false);
                   state.authorsAPI.createNewAuthor(newAuthor);
+                  setNewAuthor(initialNewAuthorValues);
                 }}
               >
                 <button

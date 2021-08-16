@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { GlobalState } from "../GlobalState";
 import { FiEdit2, FiTrash2, FiX, FiCheck } from "react-icons/fi";
 
@@ -126,8 +126,8 @@ function InfoWidget({ currentAuthorData }) {
           <h4 className="h4 font-bold">Authored:</h4>
           <ul>
             {currentAuthorRestBooks?.map((book) => (
-              <li className="list-disc ml-4 pl-2" key={book._id}>
-                {book.title}
+              <li className="list-disc ml-4 pl-2 underline" key={book._id}>
+                <Link to={`/books/${book._id}`}>{book.title}</Link>
               </li>
             ))}
           </ul>

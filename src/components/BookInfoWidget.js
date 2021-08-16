@@ -41,7 +41,7 @@ function BookInfoWidget({ currentBookData }) {
   }, [isEditing]);
 
   return (
-    <div className="border-pink-500 border-4 p-8 rounded-3xl shadow-xl w-full">
+    <div style={{minWidth: '150px'}} className="border-pink-500 border-4 py-8 px-4 md:px-8 rounded-3xl shadow-xl w-full">
       <h1 className="h1 max-w-xl">
         {isEditing ? (
           <>

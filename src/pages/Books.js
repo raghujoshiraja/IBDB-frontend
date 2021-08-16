@@ -33,7 +33,6 @@ const Books = () => {
     if (urlId) {
       setCurrentBookId(urlId);
     }
-    console.log("Url changed", urlId);
   }, [urlId]);
 
   useEffect(() => {
@@ -82,6 +81,7 @@ const Books = () => {
                   e.preventDefault();
                   setIsAddingBook(false);
                   state.booksAPI.createNewBook(newBook);
+                  setNewBook(initialNewBookValues);
                 }}
               >
                 <button
