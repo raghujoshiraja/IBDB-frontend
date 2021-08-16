@@ -1,6 +1,6 @@
 import React, { createContext } from "react";
 import booksAPI from "./api/BookAPI";
-import authorsAPI from "./api/authorsAPI";
+import authorsAPI from "./api/AuthorsAPI";
 
 export const GlobalState = createContext();
 

@@ -3,7 +3,7 @@ import { GlobalState } from "../GlobalState";
 import _ from "lodash";
 import { FiX } from "react-icons/fi";
 import Search from "../components/Search";
-import InfoWidget from "../components/InfoWidget";
+import InfoWidget from "../components/AuthorInfoWidget";
 import ItemGrid from "../components/ItemGrid";
 
 const initialNewAuthorValues = {
@@ -38,8 +38,8 @@ const Authors = () => {
 
   useEffect(() => {
     const filteredValue = {
-      ...sourceAuthors?.filter((Author) => Author._id == currentAuthorId)[0],
-      books: sourceBooks?.filter((book) => book.authorId == currentAuthorId),
+      ...sourceAuthors?.filter((Author) => Author._id === currentAuthorId)[0],
+      books: sourceBooks?.filter((book) => book.authorId === currentAuthorId),
       auth: currentAuthorId,
     };
     console.log(filteredValue);
@@ -136,7 +136,7 @@ const Authors = () => {
                 <button className="btn">Add</button>
               </form>
             )}
-            <InfoWidget mode="author" currentData={currentAuthorInfo} />
+            <InfoWidget mode="author" currentAuthorData={currentAuthorInfo} />
           </div>
         </div>
       </div>

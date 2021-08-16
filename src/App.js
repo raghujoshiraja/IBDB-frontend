@@ -12,9 +12,9 @@ function App() {
       <Navbar />
       <main className="px-6 md:px-14 xl:px-16 my-10 gap-3">
         <Switch>
-          <Route path="/books" exact component={Books} />
-          <Route path="/authors" exact component={Authors} />
-          <Redirect from="*" to="/books"/>
+          <Route path="/books/:id?" exact component={Books} />
+          <Route path="/authors/:id?" exact component={Authors} />
+          <Redirect from="*" to="/books" />
         </Switch>
       </main>
       <Footer />

@@ -26,7 +26,7 @@ const BookAPI = () => {
       });
   };
 
-  const editBook = ({ id, data }) => {
+  const editBook = (id, data) => {
     axios
       .patch(`/books/single/${id}`, data)
       .then(() => {

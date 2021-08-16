@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "../axios";
 import { toast } from "react-toast";
+import _ from "lodash";
 
 const AuthorsAPI = () => {
   const [sourceAuthors, setSourceAuthors] = useState([]);
@@ -27,9 +28,9 @@ const AuthorsAPI = () => {
       });
   };
 
-  const editAuthor = ({ id, data }) => {
+  const editAuthor = (id, data) => {
     axios
-      .patch(`/authors/single/${id}`, data)
+      .patch(`/authors/single/${id}`, _.pick(data, ["name", "isFemale", "age"]))
       .then(() => {
         toast.success("Edited the Author successfully!");
         refreshAuthors();

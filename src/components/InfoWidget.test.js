@@ -1,7 +1,7 @@
 import * as React from "react";
 import { render } from "@testing-library/react";
 
-import InfoWidget from "./InfoWidget";
+import InfoWidget from "./AuthorInfoWidget";
 import { BrowserRouter as Router } from "react-router-dom";
 
 const sampleData = {};

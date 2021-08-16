@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import Search from "../components/Search";
 import ItemGrid from "../components/ItemGrid";
-import BookInfoWidget from "../components/InfoWidget";
+import BookInfoWidget from "../components/BookInfoWidget";
 import { FiX } from "react-icons/fi";
+import { useParams } from "react-router";
 import _ from "lodash";
 
 import { GlobalState } from "../GlobalState";
@@ -24,8 +25,16 @@ const Books = () => {
   const [currentBookId, setCurrentBookId] = useState("");
   const [isAddingBook, setIsAddingBook] = useState(false);
   const [currentBookInfo, setCurrentBookInfo] = useState({});
+  const { id: urlId } = useParams();
 
   const [newBook, setNewBook] = useState(initialNewBookValues);
+
+  useEffect(() => {
+    if (urlId) {
+      setCurrentBookId(urlId);
+    }
+    console.log("Url changed", urlId);
+  }, [urlId]);
 
   useEffect(() => {
     // Search function
@@ -145,7 +154,7 @@ const Books = () => {
                 <button className="btn">Create</button>
               </form>
             )}
-            <BookInfoWidget mode="book" currentData={currentBookInfo} />
+            <BookInfoWidget mode="book" currentBookData={currentBookInfo} />
           </div>
         </div>
       </div>

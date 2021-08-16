@@ -24,3 +24,6 @@ main {
 .form {
   @apply border-pink-500 border-4 p-8 rounded-3xl shadow-xl max-w-md col-start-3 col-span-4 text-center relative;
 }
+.underline-tb {
+  @apply w-full border-b-2 border-pink-500 inline-block;
+}
